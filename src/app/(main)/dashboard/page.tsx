@@ -6,8 +6,8 @@ import WelcomeContainer from "./_components/WelcomeContainer";
 const Dashboard = () => {
     return ( 
         <div>
-            <WelcomeContainer />
-            <h2 className="my-3 font-medium text-2xl">Dashboard</h2>
+            {/* <WelcomeContainer /> */}
+            <h2 className=" mb-3 font-medium text-2xl">Dashboard</h2>
             <CreateOptions />
             <LatestInterviewsList />
         </div>
