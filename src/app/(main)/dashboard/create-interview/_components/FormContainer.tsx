@@ -72,7 +72,6 @@ const FormContainer = ({ GoToNext }: Props) => {
               </FormItem>
             )}
           />
-
           {/* Job Description */}
           <FormField
             control={form.control}

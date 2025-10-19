@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Loader2Icon, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface QuestionsListProps {
   formData: {
@@ -18,6 +19,7 @@ interface QuestionsListProps {
 const QuestionsList = ({ formData }: QuestionsListProps) => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<any[]>([]);
+  const router = useRouter()
 
   // Run once formData is ready
   useEffect(() => {
@@ -75,17 +77,24 @@ const QuestionsList = ({ formData }: QuestionsListProps) => {
   };
 
   const onFinish = async () => {
-    try {
-      await axios.post("/api/save-interview", {
-        formData,
-        questions,
-      });
+  try {
+    const res = await axios.post("/api/save-interview", {
+      formData,
+      questions,
+    });
+
+    if (res.data?.success) {
       toast.success("Interview saved successfully!");
-    } catch (err) {
-      console.error(err);
+      router.push("/dashboard/save-interview");
+    } else {
       toast.error("Failed to save interview");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to save interview");
+  }
+};
+
 
   return (
     <div>

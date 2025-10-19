@@ -24,7 +24,8 @@ export const POST = async (request) => {
 
     // ✅ Generate questions
     const completion = await openai.chat.completions.create({
-      model: "deepseek/deepseek-chat-v3.1:free",
+      // ! Model Name
+      model: "nvidia/nemotron-nano-9b-v2:free",
       messages: [{ role: "user", content: FINAL_PROMPT }],
     });
 
